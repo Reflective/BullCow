@@ -34,7 +34,7 @@ void UBullCowCartridge::SetupGame()
     PrintLine(FString::Printf(TEXT("             You have %i Tries to\n            Guess the %i letter word"), HiddenWord.Len(), HiddenWord.Len()));
     PrintLine(TEXT("The number of words is %i"), WordList.Num());
     PrintLine(TEXT("The number of valid words is: %i"), GetValidWords(WordList).Num());
-    PrintLine(FString::Printf(TEXT("The Hidden word is: %s"), HiddenWord));
+    PrintLine(FString::Printf(TEXT("The Hidden word is: %s"), *HiddenWord));
     PrintLine(TEXT("              Type in your guess"));
     PrintLine(TEXT("         and press ENTER to continue..."));
 }

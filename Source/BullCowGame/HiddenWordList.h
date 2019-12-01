@@ -1,7 +1,7 @@
 #pragma once
 #include "CoreMinimal.h"
 
-const TArray<FString>& WordList = 
+const TArray<FString> WordList = 
 {
     TEXT("ability"),
     TEXT("able"),

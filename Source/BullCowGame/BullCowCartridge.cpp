@@ -20,8 +20,8 @@ void UBullCowCartridge::OnInput(const FString &Input) // When the player hits en
     {
         ProcessGuess(Input);
     }
-}
-
+} 
+ 
 // initializes gameover state and prompts player
 void UBullCowCartridge::SetupGame()
 {

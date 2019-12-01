@@ -83,8 +83,13 @@ void UBullCowCartridge::ProcessGuess(const FString& Guess)
             PrintLine(TEXT(" "));
             EndGame();
         }
-        else // prompt retry
+        else 
         {
+            // show bulls and cows
+            int32 Bulls, Cows;
+            GetBullCows(Guess, Bulls, Cows);
+            PrintLine(TEXT("You have %i Bulls and %i Cows"), Bulls, Cows);
+            // prompt retry
             PrintLine(TEXT("               You have %i Tries left"), Lives);
             PrintLine(TEXT("                  Type in your guess"));
             PrintLine(TEXT("              Press ENTER to try again..."));
@@ -122,7 +127,23 @@ TArray<FString> UBullCowCartridge::GetValidWords(const TArray<FString>& List) co
     return ValidWords;
 }
 
-// TArray<FString> UBullCowCartridge::RandomList(const TArray<FString>& List) const
-// {
-//     FMath::RandRange(0, 10);
-// }
+void UBullCowCartridge::GetBullCows(const FString& Guess, int32& BullCount, int32& CowCount) const
+{
+    BullCount = 0;
+    CowCount = 0;
+    for (int32 GuessIndex = 0; GuessIndex < Guess.Len(); GuessIndex++)
+    {
+        if (Guess[GuessIndex] == HiddenWord[GuessIndex])
+        {
+            ++BullCount;
+            continue;
+        }
+        for (int32 HiddenIndex = 0; HiddenIndex < HiddenWord.Len(); HiddenIndex++)
+        {
+            if (Guess[GuessIndex] == HiddenWord[HiddenIndex])
+            {
+                ++CowCount;
+            }
+        }
+    }
+}

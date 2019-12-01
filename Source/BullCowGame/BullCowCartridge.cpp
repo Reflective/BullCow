@@ -5,10 +5,10 @@
 void UBullCowCartridge::BeginPlay() // When the game starts
 {
     Super::BeginPlay();
-    
+    Isograms = GetValidWords(WordList);
     SetupGame();
 }
-
+// Random Test code [FMath::RandRange(0, GetValidWords(WordList).Num() - 1)]
 void UBullCowCartridge::OnInput(const FString &Input) // When the player hits enter
 {
     if (bGameOver)
@@ -27,14 +27,14 @@ void UBullCowCartridge::SetupGame()
 {
     bGameOver = false;
     // Set Hidden word to a random 4 - 8 character Isogram within a TArray 
-    HiddenWord = GetValidWords(WordList)[FMath::RandRange(0, GetValidWords(WordList).Num() - 1)];
+    HiddenWord = Isograms[FMath::RandRange(0, Isograms.Num() - 1)];
     Lives = HiddenWord.Len();
     //Display Info and prompt input
+    PrintLine(TEXT("   Welcome to Salby McCorns Home for cows"));
+    PrintLine(FString::Printf(TEXT("             You have %i Tries to\n            Guess the %i letter word"), HiddenWord.Len(), HiddenWord.Len()));
     PrintLine(TEXT("The number of words is %i"), WordList.Num());
     PrintLine(TEXT("The number of valid words is: %i"), GetValidWords(WordList).Num());
     PrintLine(FString::Printf(TEXT("The Hidden word is: %s"), HiddenWord));
-    PrintLine(TEXT("   Welcome to Salby McCorns Home for cows"));
-    PrintLine(FString::Printf(TEXT("             You have %i Tries to\n            Guess the %i letter word"), HiddenWord.Len(), HiddenWord.Len()));
     PrintLine(TEXT("              Type in your guess"));
     PrintLine(TEXT("         and press ENTER to continue..."));
 }
